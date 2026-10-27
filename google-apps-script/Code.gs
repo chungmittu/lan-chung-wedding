@@ -21,7 +21,13 @@ function doPost(e) {
     if (type === 'rsvp') {
       ss.getSheetByName(RSVP_SHEET).appendRow([id,new Date(),clean_(p.name,80),Math.max(1,Math.min(20,Number(p.guests||1))),clean_(p.event,50),clean_(p.attendance,50),clean_(p.phone,30),clean_(p.message,500)]);
     } else if (type === 'wish') {
-      ss.getSheetByName(WISH_SHEET).appendRow([id,new Date(),clean_(p.name,80),clean_(p.wish,500),'Pending']);
+      ss.getSheetByName(WISH_SHEET).appendRow([
+  id,
+  new Date(),
+  clean_(p.name, 80),
+  clean_(p.wish, 500),
+  'Approved'
+]);
     } else return json_({ok:false,error:'invalid_type'});
     SpreadsheetApp.flush();
     return json_({ok:true,id:id});
