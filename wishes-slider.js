@@ -1,11 +1,9 @@
 let currentSlideIndex = 0;
 let autoSlideInterval = null;
 
-// Lấy số lượng thẻ hiển thị dựa theo kích thước màn hình
+// Xác định số lượng lời chúc hiển thị trên 1 trang (Máy tính = 2, Điện thoại = 1)
 function getItemsPerPage() {
-  if (window.innerWidth <= 640) return 1;
-  if (window.innerWidth <= 1024) return 2;
-  return 3; // Mặc định hiển thị 3 lời chúc trên máy tính
+  return window.innerWidth <= 768 ? 1 : 2;
 }
 
 function updateWishSlider() {
@@ -18,25 +16,20 @@ function updateWishSlider() {
   const itemsPerPage = getItemsPerPage();
   const totalPages = Math.ceil(wishes.length / itemsPerPage);
 
-  // Đảm bảo chỉ số trang hợp lệ
   if (currentSlideIndex >= totalPages) currentSlideIndex = 0;
   if (currentSlideIndex < 0) currentSlideIndex = totalPages - 1;
 
-  // Hiển thị/ẩn các lời chúc tương ứng với trang hiện tại
   const startIndex = currentSlideIndex * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
   wishes.forEach((wish, index) => {
     if (index >= startIndex && index < endIndex) {
       wish.style.display = 'flex';
-      wish.classList.add('is-active');
     } else {
       wish.style.display = 'none';
-      wish.classList.remove('is-active');
     }
   });
 
-  // Cập nhật bộ đếm trang (ví dụ: 1 / 3)
   const counter = document.getElementById('wishCounter');
   if (counter) {
     counter.textContent = `${currentSlideIndex + 1} / ${totalPages}`;
@@ -65,7 +58,6 @@ function stopAutoWishSlide() {
   }
 }
 
-// Khởi tạo slider
 function initWishSlider() {
   const wishList = document.getElementById('wishList');
   if (!wishList) return;
@@ -74,7 +66,6 @@ function initWishSlider() {
   updateWishSlider();
   startAutoWishSlide();
 
-  // Nút chuyển slide
   const prevBtn = document.getElementById('prevWish');
   const nextBtn = document.getElementById('nextWish');
 
@@ -92,15 +83,15 @@ function initWishSlider() {
     };
   }
 
-  // Rê chuột vào thì tạm dừng tự động chạy
-  wishList.addEventListener('mouseenter', stopAutoWishSlide);
-  wishList.addEventListener('mouseleave', startAutoWishSlide);
+  const wrapper = document.querySelector('.wish-slider-wrapper');
+  if (wrapper) {
+    wrapper.addEventListener('mouseenter', stopAutoWishSlide);
+    wrapper.addEventListener('mouseleave', startAutoWishSlide);
+  }
 }
 
-// Lắng nghe thay đổi kích thước màn hình
 window.addEventListener('resize', updateWishSlider);
 
-// Khởi tạo slider khi tải xong trang
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(initWishSlider, 300);
 });
