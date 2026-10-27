@@ -194,3 +194,112 @@ status.textContent =
 // ==========================================
 $('#rsvpForm').onsubmit=async event=>{event.preventDefault();const form=event.currentTarget;if(!form.reportValidity())return;const data=Object.fromEntries(new FormData(form));const status=$('#rsvpStatus');const button=$('button',form);button.disabled=true;status.textContent='Đang gửi và xác minh...';try{const id=await submitAndVerify({type:'rsvp',name:data.name.trim(),guests:data.guests,event:data.event,attendance:data.attendance,phone:data.phone||'',message:data.message||''});status.textContent=`Đã lưu xác nhận vào Google Sheets. Mã xác nhận: ${id}`;form.reset()}catch(error){status.textContent=`${error.message}. Vui lòng thử lại hoặc liên hệ trực tiếp.`}finally{button.disabled=false}};
 if($('#music'))$('#music').onclick=()=>notify('Nhạc chưa được cấu hình.');
+
+// ==========================================
+// WISHES CAROUSEL SLIDER LOGIC
+// ==========================================
+let currentSlide = 0;
+let slideInterval = null;
+
+function initWishSlider() {
+  const wishList = $('#wishList');
+  if (!wishList) return;
+  
+  wishList.classList.add('wish-slider');
+  updateSlides();
+  startAutoSlide();
+
+  // Gắn sự kiện nút bấm qua lại
+  const prevBtn = $('#prevWish');
+  const nextBtn = $('#nextWish');
+
+  if (prevBtn) {
+    prevBtn.onclick = () => {
+      prevSlide();
+      resetAutoSlide();
+    };
+  }
+
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      nextSlide();
+      resetAutoSlide();
+    };
+  }
+
+  // Tạm dừng tự động chuyển khi rê chuột vào khu vực slider hoặc nút bấm
+  const controls = $('#wishSliderControls');
+  [wishList, controls].forEach(el => {
+    if (!el) return;
+    el.addEventListener('mouseenter', stopAutoSlide);
+    el.addEventListener('mouseleave', startAutoSlide);
+  });
+}
+
+function getSlides() {
+  return $$('.wish', $('#wishList'));
+}
+
+function updateSlides() {
+  const slides = getSlides();
+  if (slides.length === 0) return;
+
+  if (currentSlide >= slides.length) currentSlide = 0;
+  if (currentSlide < 0) currentSlide = slides.length - 1;
+
+  slides.forEach((slide, idx) => {
+    if (idx === currentSlide) {
+      slide.classList.add('is-active');
+    } else {
+      slide.classList.remove('is-active');
+    }
+  });
+
+  const counter = $('#wishCounter');
+  if (counter) {
+    counter.textContent = `${currentSlide + 1} / ${slides.length}`;
+  }
+}
+
+function nextSlide() {
+  const slides = getSlides();
+  if (slides.length <= 1) return;
+  currentSlide = (currentSlide + 1) % slides.length;
+  updateSlides();
+}
+
+function prevSlide() {
+  const slides = getSlides();
+  if (slides.length <= 1) return;
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  updateSlides();
+}
+
+function startAutoSlide() {
+  stopAutoSlide();
+  slideInterval = setInterval(() => {
+    nextSlide();
+  }, 3000); // Tự động chuyển sau mỗi 3 giây
+}
+
+function stopAutoSlide() {
+  if (slideInterval) {
+    clearInterval(slideInterval);
+    slideInterval = null;
+  }
+}
+
+function resetAutoSlide() {
+  stopAutoSlide();
+  startAutoSlide();
+}
+
+// Gọi khởi tạo slider sau khi đã load xong lời chúc từ server hoặc localStorage
+// Đặt lệnh này ở cuối file main.js hoặc sau hàm loadWishes / addWish
+setTimeout(() => {
+  initWishSlider();
+}, 500);
+
+// Khi có lời chúc mới thêm vào, cập nhật lại số lượng slide
+const originalAddWish = window.addWish || function(){};
+// Đảm bảo mỗi khi gọi addWish hoặc tải xong wishes, chạy lại updateSlides()
