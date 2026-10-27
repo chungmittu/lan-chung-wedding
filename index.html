@@ -11,7 +11,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap&subset=vietnamese" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script defer src="config.js"></script>
   <script defer src="main.js"></script>
 </head>
 
@@ -222,7 +221,7 @@
       <div>
         <article>
           <small>Nhà gái</small>
-          <p>Ông <b>Bùi Văn Thái</b><br>Bà <b>Nguyễn Thị Hà</b></p>
+          <p>Ông <b>Bùi Văn Thái</b><br>Bà <b>Bùi Thị Hà</b></p>
         </article>
         <picture>
           <source media="(min-width: 1024px)" srcset="assets/images/logo_liu_chiu_desktop.webp">
@@ -264,13 +263,7 @@
         <h2>Lời chúc <em>từ khách mời</em></h2>
       </div>
       <div class="wish-layout">
-        <div id="wishList">
-          <article class="wish">
-            <small>Mẫu</small>
-            <blockquote>Chúc hai bạn luôn giữ được sự dịu dàng, sẻ chia và cùng nhau đi qua thật nhiều mùa hạnh phúc.</blockquote>
-            <p>Người bạn thân</p>
-          </article>
-        </div>
+        <div id="wishList" aria-live="polite" aria-label="Danh sách lời chúc đã được duyệt"></div>
         <form id="wishForm">
           <h3>Để lại lời chúc</h3>
           <label>Họ và tên
@@ -290,8 +283,7 @@
       <div class="heading reveal">
         <span class="eyebrow">Répondez s’il vous plaît</span>
         <h2>Bạn sẽ <em>đến chung vui?</em></h2>
-        <p>Phản hồi được lưu và xác minh trực tiếp trong Google Sheets.</p>
-          <p id="backendState" role="status">Đang kiểm tra kết nối biểu mẫu...</p>
+        <p>Khi chưa cấu hình backend, website chỉ sao chép nội dung, không tuyên bố đã lưu.</p>
       </div>
       <form id="rsvpForm">
         <label>Họ và tên
@@ -300,10 +292,7 @@
         <label>Số người
           <input name="guests" type="number" min="1" max="20" value="1" required>
         </label>
-        <label>Số điện thoại, không bắt buộc
-            <input name="phone" type="tel" maxlength="30" autocomplete="tel">
-          </label>
-          <label>Sự kiện
+        <label>Sự kiện
           <select name="event" required>
             <option value="">Chọn buổi tiệc</option>
             <option>Tiệc nhà gái</option>
