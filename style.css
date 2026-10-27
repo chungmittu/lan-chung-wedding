@@ -1390,6 +1390,43 @@ button.is-active {
   }
 }
 
+/* ==========================================
+   TỐI ƯU CỠ CHỮ & KHOẢNG CÁCH TRANG BÌA (COVER)
+   ========================================== */
+
+/* Phóng to chữ "WEDDING INVITATION" cho cân đối */
+.cover-card > .eyebrow {
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem) !important;
+  letter-spacing: 0.28em !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* Căn chỉnh kích thước Logo vừa vặn */
+.cover-card > img {
+  width: min(28vw, 340px) !important;
+  max-height: 28svh !important;
+  object-fit: contain !important;
+}
+
+/* Thu nhỏ tên "Lan & Chung" lại một chút cho đỡ bị tràn và thanh lịch hơn */
+.cover-card > h1 {
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem) !important;
+  line-height: 1.1 !important;
+  margin: 0.4rem 0 !important;
+}
+
+/* Ngày tháng năm (12 · 12 · 2026) */
+.cover-card > p {
+  font-size: clamp(0.85rem, 1.1vw, 1.1rem) !important;
+  letter-spacing: 0.25em !important;
+  margin-top: 0.15rem !important;
+}
+
+/* Nút Mở Thiệp */
+.cover-card > .btn {
+  margin-top: 0.75rem !important;
+  padding: 0.75rem 2rem !important;
+}
 
 /* ==========================================
    BỐ CỤC CÂN BẰNG: 2 CỘT BẰNG NHAU (TRÁI & PHẢI)
