@@ -1,343 +1,336 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f6efe8">
-  <meta name="description" content="Thiệp cưới Lan và Chung, ngày 12 tháng 12 năm 2026">
-  <title>Lan & Chung | 12.12.2026</title>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@300;400;500;600&display=swap&subset=vietnamese" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script defer src="main.js"></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#f6efe8" name="theme-color"/>
+<meta content="Thiệp cưới Lan và Chung, ngày 12 tháng 12 năm 2026" name="description"/>
+<title>Lan &amp; Chung | 12.12.2026</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;family=Manrope:wght@300;400;500;600&amp;display=swap&amp;subset=vietnamese" rel="stylesheet"/>
+<link href="style.css" rel="stylesheet"/>
+<script defer="" src="config.js"></script>
+<script defer="" src="main.js"></script>
 </head>
-
 <body class="locked">
-  <a class="skip" href="#main">Đi đến nội dung chính</a>
-
-  <!-- Trang bìa mở thiệp (Cover) -->
-  <div class="cover" id="cover">
-    <div class="cover-card">
-      <span class="eyebrow">Wedding invitation</span>
-      <picture>
-        <source media="(min-width: 1024px)" srcset="assets/images/logo_liu_chiu_desktop.webp">
-        <source media="(min-width: 768px)" srcset="assets/images/logo_liu_chiu_tablet.webp">
-        <img src="assets/images/logo_liu_chiu_mobile.webp" alt="Logo Liu Chiu">
-      </picture>
-      <h1>Lan <i>&</i> Chung</h1>
-      <p>12 · 12 · 2026</p>
-      <button class="btn dark" id="open">Mở thiệp</button>
-    </div>
-  </div>
-
-  <!-- Thanh thanh điều hướng Header -->
-  <header>
-    <a href="#hero" class="brand">
-      <picture>
-        <source media="(min-width: 1024px)" srcset="assets/images/logo_liu_chiu_desktop.webp">
-        <source media="(min-width: 768px)" srcset="assets/images/logo_liu_chiu_tablet.webp">
-        <img src="assets/images/logo_liu_chiu_mobile.webp" alt="Logo Liu Chiu">
-      </picture>
-    </a>
-    <button id="menu" class="menu" type="button" aria-expanded="false">Menu</button>
-    <nav id="nav">
-      <a href="#story">Câu chuyện</a>
-      <a href="#gallery">Album</a>
-      <a href="#events">Lễ cưới</a>
-      <a href="#wishes">Lời chúc</a>
-      <a href="#rsvp">RSVP</a>
-    </nav>
-    <button id="share" class="share">Chia sẻ</button>
-  </header>
-
-  <!-- Nội dung chính -->
-  <main id="main">
-
-    <!-- 1. Section Hero (Bìa chính) -->
-    <section id="hero" class="hero">
-      <figure>
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/images/hero-mobile.webp">
-          <img src="assets/images/hero.webp" alt="Hai người trong trang phục cưới chụp ảnh trước thác nước và hoa trắng" width="1086" height="1448" fetchpriority="high">
-        </picture>
-      </figure>
-      <div class="hero-copy reveal">
-        <span class="eyebrow">The wedding edit · Volume 01</span>
-        <h2>Lan <i>&</i><br>Chung</h2>
-        <div class="date">
-          <span>Thứ Bảy</span>
-          <b>12.12</b>
-          <span>2026</span>
-        </div>
-        <p>Bùi Ngọc Lan và Nguyễn Văn Chung trân trọng mời bạn cùng hiện diện trong ngày khởi đầu hành trình mới.</p>
-      </div>
-    </section>
-
-    <!-- 2. Section Story (Câu chuyện tình yêu) -->
-    <section id="story" class="section">
-      <div class="heading reveal">
-        <span class="eyebrow">Chapter one</span>
-        <h2>Câu chuyện <em>của chúng mình</em></h2>
-        <p>Nội dung mẫu để hoàn thiện bố cục. Hãy thay bằng câu chuyện thật của Lan và Chung.</p>
-      </div>
-      <div class="story">
-        <figure class="reveal">
-          <p>“Giữa hàng triệu cuộc gặp gỡ, chúng mình đã chọn ở lại bên nhau.”</p>
-          <img src="assets/images/g3.webp" alt="Ảnh mẫu cho câu chuyện" loading="lazy">
-        </figure>
-        <div class="timeline">
-          <article class="reveal">
-            <b>01</b>
-            <time>[Ngày / tháng / năm]</time>
-            <h3>Lần đầu gặp gỡ</h3>
-            <p>Chúng mình gặp nhau vào một ngày rất đỗi bình thường. Không ai biết cuộc trò chuyện hôm ấy lại trở thành chương mở đầu cho một hành trình dài.</p>
-            <small>Nội dung mẫu, cần thay bằng kỷ niệm thật.</small>
-          </article>
-          <article class="reveal">
-            <b>02</b>
-            <time>[Ngày / tháng / năm]</time>
-            <h3>Ngày mình có nhau</h3>
-            <p>Từ những câu chuyện nhỏ, chúng mình học cách lắng nghe, sẻ chia và cùng nhau trưởng thành.</p>
-            <small>Nội dung mẫu, cần thay bằng ngày bắt đầu yêu.</small>
-          </article>
-          <article class="reveal">
-            <b>03</b>
-            <time>[Ngày / tháng / năm]</time>
-            <h3>Lời hẹn trọn đời</h3>
-            <p>Sau những mùa vui buồn bên nhau, chúng mình quyết định gọi người còn lại là gia đình.</p>
-            <small>Nội dung mẫu, cần thay bằng chuyện cầu hôn.</small>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. Section Gallery (Album ảnh) -->
-    <section id="gallery" class="section gallery">
-      <div class="heading center reveal">
-        <span class="eyebrow">Selected moments</span>
-        <h2>Wedding <em>Gallery</em></h2>
-        <p>Ảnh mẫu minh họa concept editorial.</p>
-      </div>
-      <div class="photos">
-        <button class="photo tall reveal" data-img="assets/images/g1.webp">
-          <img src="assets/images/g1.webp" alt="Ảnh mẫu thiệp cưới" loading="lazy">
-        </button>
-        <button class="photo reveal" data-img="assets/images/g2.webp">
-          <img src="assets/images/g2.webp" alt="Ảnh mẫu cưới botanical" loading="lazy">
-        </button>
-        <button class="photo reveal" data-img="assets/images/g3.webp">
-          <img src="assets/images/g3.webp" alt="Ảnh mẫu cưới tông hồng" loading="lazy">
-        </button>
-        <button class="photo wide reveal" data-img="assets/images/g4.webp">
-          <img src="assets/images/g4.webp" alt="Ảnh mẫu cưới hoàng hôn" loading="lazy">
-        </button>
-      </div>
-    </section>
-
-    <!-- 4. Section Countdown (Đếm ngược) -->
-    <section class="count reveal">
-      <span class="eyebrow">Until our day</span>
-      <h2>Đếm từng khoảnh khắc</h2>
-      <div class="count-grid">
-        <div><b id="days">0</b><span>Ngày</span></div>
-        <div><b id="hours">00</b><span>Giờ</span></div>
-        <div><b id="mins">00</b><span>Phút</span></div>
-        <div><b id="secs">00</b><span>Giây</span></div>
-      </div>
-      <p id="countMsg">Hẹn gặp bạn vào ngày 12 tháng 12 năm 2026.</p>
-    </section>
-
-    <!-- 5. Section Calendar (Lịch tháng) -->
-    <section class="section calendar-section">
-      <div class="heading reveal">
-        <span class="eyebrow">Save the date</span>
-        <h2>December <em>2026</em></h2>
-        <div class="actions">
-          <button class="btn outline" data-ics="bride">Lưu tiệc nhà gái</button>
-          <button class="btn outline" data-ics="groom">Lưu tiệc nhà trai</button>
-        </div>
-      </div>
-      <div class="calendar reveal">
-        <div class="week"><b>T2</b><b>T3</b><b>T4</b><b>T5</b><b>T6</b><b>T7</b><b>CN</b></div>
-        <div class="days" id="cal"></div>
-      </div>
-    </section>
-
-    <!-- 6. Section Events (Thông tin tiệc cưới) -->
-    <section id="events" class="section events">
-      <div class="heading center reveal">
-        <span class="eyebrow">Wedding events</span>
-        <h2>Trân trọng <em>kính mời</em></h2>
-      </div>
-      <div class="event-grid">
-        <article class="event reveal">
-          <span>01</span>
-          <div class="eyebrow">Tiệc nhà gái</div>
-          <h3>SeaBay<br>Hạ Long</h3>
-          <div class="event-date">
-            <b>10:30</b>
-            <p>Thứ Bảy<br>12.12.2026</p>
-          </div>
-          <address>
-            <strong>Trung tâm tiệc cưới SeaBay Hạ Long</strong><br>
+<a class="skip" href="#main">Đi đến nội dung chính</a>
+<!-- Trang bìa mở thiệp (Cover) -->
+<div class="cover" id="cover">
+<div class="cover-card">
+<span class="eyebrow">Wedding invitation</span>
+<picture>
+<source media="(min-width: 1024px)" srcset="assets/images/logo_liu_chiu_desktop.webp"/>
+<source media="(min-width: 768px)" srcset="assets/images/logo_liu_chiu_tablet.webp"/>
+<img alt="Logo Liu Chiu" src="assets/images/logo_liu_chiu_mobile.webp"/>
+</picture>
+<h1>Lan <i>&amp;</i> Chung</h1>
+<p>12 · 12 · 2026</p>
+<button class="btn dark" id="open">Mở thiệp</button>
+</div>
+</div>
+<!-- Thanh thanh điều hướng Header -->
+<header>
+<a class="brand" href="#hero">
+<picture>
+<source media="(min-width: 1024px)" srcset="assets/images/logo_liu_chiu_desktop.webp"/>
+<source media="(min-width: 768px)" srcset="assets/images/logo_liu_chiu_tablet.webp"/>
+<img alt="Logo Liu Chiu" src="assets/images/logo_liu_chiu_mobile.webp"/>
+</picture>
+</a>
+<button aria-expanded="false" class="menu" id="menu" type="button">Menu</button>
+<nav id="nav">
+<a href="#story">Câu chuyện</a>
+<a href="#gallery">Album</a>
+<a href="#events">Lễ cưới</a>
+<a href="#wishes">Lời chúc</a>
+<a href="#rsvp">RSVP</a>
+</nav>
+<button class="share" id="share">Chia sẻ</button>
+</header>
+<!-- Nội dung chính -->
+<main id="main">
+<!-- 1. Section Hero (Bìa chính) -->
+<section class="hero" id="hero">
+<figure>
+<picture>
+<source media="(max-width: 768px)" srcset="assets/images/hero-mobile.webp"/>
+<img alt="Hai người trong trang phục cưới chụp ảnh trước thác nước và hoa trắng" fetchpriority="high" height="1448" src="assets/images/hero.webp" width="1086"/>
+</picture>
+</figure>
+<div class="hero-copy reveal">
+<span class="eyebrow">The wedding edit · Volume 01</span>
+<h2>Lan <i>&amp;</i><br/>Chung</h2>
+<div class="date">
+<span>Thứ Bảy</span>
+<b>12.12</b>
+<span>2026</span>
+</div>
+<p>Bùi Ngọc Lan và Nguyễn Văn Chung trân trọng mời bạn cùng hiện diện trong ngày khởi đầu hành trình mới.</p>
+</div>
+</section>
+<!-- 2. Section Story (Câu chuyện tình yêu) -->
+<section class="section" id="story">
+<div class="heading reveal">
+<span class="eyebrow">Chapter one</span>
+<h2>Câu chuyện <em>của chúng mình</em></h2>
+<p>Nội dung mẫu để hoàn thiện bố cục. Hãy thay bằng câu chuyện thật của Lan và Chung.</p>
+</div>
+<div class="story">
+<figure class="reveal">
+<p>“Giữa hàng triệu cuộc gặp gỡ, chúng mình đã chọn ở lại bên nhau.”</p>
+<img alt="Ảnh mẫu cho câu chuyện" loading="lazy" src="assets/images/g3.webp"/>
+</figure>
+<div class="timeline">
+<article class="reveal">
+<b>01</b>
+<time>[Ngày / tháng / năm]</time>
+<h3>Lần đầu gặp gỡ</h3>
+<p>Chúng mình gặp nhau vào một ngày rất đỗi bình thường. Không ai biết cuộc trò chuyện hôm ấy lại trở thành chương mở đầu cho một hành trình dài.</p>
+<small>Nội dung mẫu, cần thay bằng kỷ niệm thật.</small>
+</article>
+<article class="reveal">
+<b>02</b>
+<time>[Ngày / tháng / năm]</time>
+<h3>Ngày mình có nhau</h3>
+<p>Từ những câu chuyện nhỏ, chúng mình học cách lắng nghe, sẻ chia và cùng nhau trưởng thành.</p>
+<small>Nội dung mẫu, cần thay bằng ngày bắt đầu yêu.</small>
+</article>
+<article class="reveal">
+<b>03</b>
+<time>[Ngày / tháng / năm]</time>
+<h3>Lời hẹn trọn đời</h3>
+<p>Sau những mùa vui buồn bên nhau, chúng mình quyết định gọi người còn lại là gia đình.</p>
+<small>Nội dung mẫu, cần thay bằng chuyện cầu hôn.</small>
+</article>
+</div>
+</div>
+</section>
+<!-- 3. Section Gallery (Album ảnh) -->
+<section class="section gallery" id="gallery">
+<div class="heading center reveal">
+<span class="eyebrow">Selected moments</span>
+<h2>Wedding <em>Gallery</em></h2>
+<p>Ảnh mẫu minh họa concept editorial.</p>
+</div>
+<div class="photos">
+<button class="photo tall reveal" data-img="assets/images/g1.webp">
+<img alt="Ảnh mẫu thiệp cưới" loading="lazy" src="assets/images/g1.webp"/>
+</button>
+<button class="photo reveal" data-img="assets/images/g2.webp">
+<img alt="Ảnh mẫu cưới botanical" loading="lazy" src="assets/images/g2.webp"/>
+</button>
+<button class="photo reveal" data-img="assets/images/g3.webp">
+<img alt="Ảnh mẫu cưới tông hồng" loading="lazy" src="assets/images/g3.webp"/>
+</button>
+<button class="photo wide reveal" data-img="assets/images/g4.webp">
+<img alt="Ảnh mẫu cưới hoàng hôn" loading="lazy" src="assets/images/g4.webp"/>
+</button>
+</div>
+</section>
+<!-- 4. Section Countdown (Đếm ngược) -->
+<section class="count reveal">
+<span class="eyebrow">Until our day</span>
+<h2>Đếm từng khoảnh khắc</h2>
+<div class="count-grid">
+<div><b id="days">0</b><span>Ngày</span></div>
+<div><b id="hours">00</b><span>Giờ</span></div>
+<div><b id="mins">00</b><span>Phút</span></div>
+<div><b id="secs">00</b><span>Giây</span></div>
+</div>
+<p id="countMsg">Hẹn gặp bạn vào ngày 12 tháng 12 năm 2026.</p>
+</section>
+<!-- 5. Section Calendar (Lịch tháng) -->
+<section class="section calendar-section">
+<div class="heading reveal">
+<span class="eyebrow">Save the date</span>
+<h2>December <em>2026</em></h2>
+<div class="actions">
+<button class="btn outline" data-ics="bride">Lưu tiệc nhà gái</button>
+<button class="btn outline" data-ics="groom">Lưu tiệc nhà trai</button>
+</div>
+</div>
+<div class="calendar reveal">
+<div class="week"><b>T2</b><b>T3</b><b>T4</b><b>T5</b><b>T6</b><b>T7</b><b>CN</b></div>
+<div class="days" id="cal"></div>
+</div>
+</section>
+<!-- 6. Section Events (Thông tin tiệc cưới) -->
+<section class="section events" id="events">
+<div class="heading center reveal">
+<span class="eyebrow">Wedding events</span>
+<h2>Trân trọng <em>kính mời</em></h2>
+</div>
+<div class="event-grid">
+<article class="event reveal">
+<span>01</span>
+<div class="eyebrow">Tiệc nhà gái</div>
+<h3>SeaBay<br/>Hạ Long</h3>
+<div class="event-date">
+<b>10:30</b>
+<p>Thứ Bảy<br/>12.12.2026</p>
+</div>
+<address>
+<strong>Trung tâm tiệc cưới SeaBay Hạ Long</strong><br/>
             X232+7MW, Bãi Cháy, Quảng Ninh.
           </address>
-          <div class="links">
-            <a href="https://www.google.com/maps/search/?api=1&query=X232%2B7MW%2C+B%C3%A3i+Ch%C3%A1y%2C+Qu%E1%BA%A3ng+Ninh" target="_blank" rel="noopener">Bản đồ ↗</a>
-            <button data-copy="X232+7MW, Bãi Cháy, Quảng Ninh">Sao chép</button>
-            <button data-select="Tiệc nhà gái">RSVP</button>
-          </div>
-        </article>
-
-        <article class="event rose reveal">
-          <span>02</span>
-          <div class="eyebrow">Tiệc nhà trai</div>
-          <h3>Tư gia<br>nhà trai</h3>
-          <div class="event-date">
-            <b>17:00</b>
-            <p>Thứ Bảy<br>12.12.2026</p>
-          </div>
-          <address>
-            <strong>Tại tư gia</strong><br>
-            Số 8, ngõ 3, đường Văn Hoá<br>
-            Khối 8 (Xóm Đồng)<br>
+<div class="links">
+<a href="https://www.google.com/maps/search/?api=1&amp;query=X232%2B7MW%2C+B%C3%A3i+Ch%C3%A1y%2C+Qu%E1%BA%A3ng+Ninh" rel="noopener" target="_blank">Bản đồ ↗</a>
+<button data-copy="X232+7MW, Bãi Cháy, Quảng Ninh">Sao chép</button>
+<button data-select="Tiệc nhà gái">RSVP</button>
+</div>
+</article>
+<article class="event rose reveal">
+<span>02</span>
+<div class="eyebrow">Tiệc nhà trai</div>
+<h3>Tư gia<br/>nhà trai</h3>
+<div class="event-date">
+<b>17:00</b>
+<p>Thứ Bảy<br/>12.12.2026</p>
+</div>
+<address>
+<strong>Tại tư gia</strong><br/>
+            Số 8, ngõ 3, đường Văn Hoá<br/>
+            Khối 8 (Xóm Đồng)<br/>
             Sóc Sơn, Hà Nội.
           </address>
-          <div class="links">
-            <a href="https://www.google.com/maps/search/?api=1&query=S%E1%BB%91+8%2C+ng%C3%B5+3%2C+%C4%91%C6%B0%E1%BB%9Dng+V%C4%83n+Ho%C3%A1%2C+Kh%E1%BB%91i+8%2C+S%C3%B3c+S%C6%A1n%2C+H%C3%A0+N%E1%BB%99i" target="_blank" rel="noopener">Bản đồ ↗</a>
-            <button data-copy="Số 8, ngõ 3, đường Văn Hoá, Khối 8 (Xóm Đồng), Sóc Sơn, Hà Nội">Sao chép</button>
-            <button data-select="Tiệc nhà trai">RSVP</button>
-          </div>
-        </article>
-      </div>
-    </section>
+<div class="links">
+<a href="https://www.google.com/maps/search/?api=1&amp;query=S%E1%BB%91+8%2C+ng%C3%B5+3%2C+%C4%91%C6%B0%E1%BB%9Dng+V%C4%83n+Ho%C3%A1%2C+Kh%E1%BB%91i+8%2C+S%C3%B3c+S%C6%A1n%2C+H%C3%A0+N%E1%BB%99i" rel="noopener" target="_blank">Bản đồ ↗</a>
+<button data-copy="Số 8, ngõ 3, đường Văn Hoá, Khối 8 (Xóm Đồng), Sóc Sơn, Hà Nội">Sao chép</button>
+<button data-select="Tiệc nhà trai">RSVP</button>
+</div>
+</article>
+</div>
+</section>
+<!-- 7. Section Family (Thông tin hai nhà) -->
+<section class="section family reveal">
+<span class="eyebrow">Together with our families</span>
+<h2>Gia đình hai bên</h2>
+<div>
+<article>
+<small>Nhà gái</small>
+<p>Ông <b>Bùi Văn Thái</b><br/>Bà <b>Nguyễn Thị Hà</b></p>
+</article>
+<picture>
+<source media="(min-width: 1024px)" srcset="assets/images/logo_liu_chiu_desktop.webp"/>
+<source media="(min-width: 768px)" srcset="assets/images/logo_liu_chiu_tablet.webp"/>
+<img alt="Logo Liu Chiu" loading="lazy" src="assets/images/logo_liu_chiu_mobile.webp"/>
+</picture>
+<article>
+<small>Nhà trai</small>
+<p>Ông <b>Nguyễn Văn Năng</b><br/>Bà <b>Nguyễn Thị Cầm</b></p>
+</article>
+</div>
+</section>
+<!-- 8. Section Gift (Mừng cưới / QR) -->
+<section class="section gift">
+<div class="heading reveal">
+<span class="eyebrow">A little blessing</span>
+<h2>Gửi lời <em>chúc mừng</em></h2>
+<p>Sự hiện diện của bạn đã là món quà quý giá. QR chỉ hiển thị sau khi điền thông tin chính thức.</p>
+</div>
+<div class="gift-grid">
+<article class="reveal">
+<small>Mừng cưới cô dâu</small>
+<div class="qr">QR<br/>CHƯA CẤU HÌNH</div>
+<button class="btn outline" disabled="">Sao chép thông tin</button>
+</article>
+<article class="reveal">
+<small>Mừng cưới chú rể</small>
+<div class="qr">QR<br/>CHƯA CẤU HÌNH</div>
+<button class="btn outline" disabled="">Sao chép thông tin</button>
+</article>
+</div>
+</section>
+<!-- 9. Section Wishes (Tường lời chúc) -->
+<section class="section wishes" id="wishes">
+<div class="heading center reveal">
+<span class="eyebrow">Guestbook</span>
+<h2>Lời chúc <em>từ khách mời</em></h2>
+</div>
+<div class="wish-layout wish-layout--form-first">
 
-    <!-- 7. Section Family (Thông tin hai nhà) -->
-    <section class="section family reveal">
-      <span class="eyebrow">Together with our families</span>
-      <h2>Gia đình hai bên</h2>
-      <div>
-        <article>
-          <small>Nhà gái</small>
-          <p>Ông <b>Bùi Văn Thái</b><br>Bà <b>Bùi Thị Hà</b></p>
-        </article>
-        <picture>
-          <source media="(min-width: 1024px)" srcset="assets/images/logo_liu_chiu_desktop.webp">
-          <source media="(min-width: 768px)" srcset="assets/images/logo_liu_chiu_tablet.webp">
-          <img src="assets/images/logo_liu_chiu_mobile.webp" alt="Logo Liu Chiu" loading="lazy">
-        </picture>
-        <article>
-          <small>Nhà trai</small>
-          <p>Ông <b>Nguyễn Văn Năng</b><br>Bà <b>Nguyễn Thị Cầm</b></p>
-        </article>
-      </div>
-    </section>
 
-    <!-- 8. Section Gift (Mừng cưới / QR) -->
-    <section class="section gift">
-      <div class="heading reveal">
-        <span class="eyebrow">A little blessing</span>
-        <h2>Gửi lời <em>chúc mừng</em></h2>
-        <p>Sự hiện diện của bạn đã là món quà quý giá. QR chỉ hiển thị sau khi điền thông tin chính thức.</p>
-      </div>
-      <div class="gift-grid">
-        <article class="reveal">
-          <small>Mừng cưới cô dâu</small>
-          <div class="qr">QR<br>CHƯA CẤU HÌNH</div>
-          <button class="btn outline" disabled>Sao chép thông tin</button>
-        </article>
-        <article class="reveal">
-          <small>Mừng cưới chú rể</small>
-          <div class="qr">QR<br>CHƯA CẤU HÌNH</div>
-          <button class="btn outline" disabled>Sao chép thông tin</button>
-        </article>
-      </div>
-    </section>
-
-    <!-- 9. Section Wishes (Tường lời chúc) -->
-    <section id="wishes" class="section wishes">
-      <div class="heading center reveal">
-        <span class="eyebrow">Guestbook</span>
-        <h2>Lời chúc <em>từ khách mời</em></h2>
-      </div>
-      <div class="wish-layout">
-        <div id="wishList" aria-live="polite" aria-label="Danh sách lời chúc đã được duyệt"></div>
-        <form id="wishForm">
-          <h3>Để lại lời chúc</h3>
-          <label>Họ và tên
-            <input name="guestName" required maxlength="80">
-          </label>
-          <label>Lời chúc
-            <textarea name="wish" required maxlength="500" rows="5"></textarea>
-          </label>
-          <button class="btn dark">Gửi lời chúc</button>
-          <p id="wishStatus" role="status"></p>
-        </form>
-      </div>
-    </section>
-
-    <!-- 10. Section RSVP (Xác nhận tham dự) -->
-    <section id="rsvp" class="section rsvp">
-      <div class="heading reveal">
-        <span class="eyebrow">Répondez s’il vous plaît</span>
-        <h2>Bạn sẽ <em>đến chung vui?</em></h2>
-        <p>Khi chưa cấu hình backend, website chỉ sao chép nội dung, không tuyên bố đã lưu.</p>
-      </div>
-      <form id="rsvpForm">
-        <label>Họ và tên
-          <input name="name" required maxlength="80">
-        </label>
-        <label>Số người
-          <input name="guests" type="number" min="1" max="20" value="1" required>
-        </label>
-        <label>Sự kiện
-          <select name="event" required>
-            <option value="">Chọn buổi tiệc</option>
-            <option>Tiệc nhà gái</option>
-            <option>Tiệc nhà trai</option>
-            <option>Cả hai buổi tiệc</option>
-          </select>
-        </label>
-        <fieldset>
-          <legend>Trạng thái</legend>
-          <label><input type="radio" name="attendance" value="Sẽ tham dự" required> Sẽ tham dự</label>
-          <label><input type="radio" name="attendance" value="Không thể tham dự"> Không thể tham dự</label>
-        </fieldset>
-        <label>Lời nhắn
-          <textarea name="message" maxlength="500" rows="4"></textarea>
-        </label>
-        <button class="btn dark">Gửi xác nhận</button>
-        <p id="rsvpStatus" role="status"></p>
-      </form>
-    </section>
-
-    <!-- 11. Section Closing (Lời cảm ơn) -->
-    <section class="closing reveal">
-      <picture>
-        <source media="(min-width: 1024px)" srcset="assets/images/logo_liu_chiu_desktop.webp">
-        <source media="(min-width: 768px)" srcset="assets/images/logo_liu_chiu_tablet.webp">
-        <img src="assets/images/logo_liu_chiu_mobile.webp" alt="Logo Liu Chiu" loading="lazy">
-      </picture>
-      <h2>Cảm ơn bạn <em>đã là một phần</em> trong ngày đặc biệt.</h2>
-      <p>Lan & Chung · 12.12.2026</p>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <span>LAN & CHUNG</span>
-    <span>Hạ Long · Hà Nội</span>
-    <span>12.12.2026</span>
-  </footer>
-
-  <!-- Các thành phần bổ trợ UI/UX -->
-  <button id="music" class="music">♫ <span>Nhạc</span></button>
-  <div class="toast" id="toast"></div>
-  <div class="lightbox" id="lightbox" hidden>
-    <button id="close">×</button>
-    <img id="lightImg" alt="Ảnh phóng lớn">
-  </div>
+<form id="wishForm">
+<h3>Để lại lời chúc</h3>
+<label>Họ và tên
+            <input autocomplete="name" maxlength="80" name="guestName" required=""/>
+</label>
+<label>Lời chúc
+            <textarea maxlength="500" name="wish" required="" rows="5"></textarea>
+</label>
+<button class="btn dark" type="submit">Gửi lời chúc</button>
+<p aria-live="polite" id="wishStatus" role="status"></p>
+</form><div aria-label="Danh sách lời chúc từ khách mời" aria-live="polite" id="wishList">
+<article class="wish">
+<small>Mẫu</small>
+<blockquote>Chúc hai bạn luôn giữ được sự dịu dàng, sẻ chia và cùng nhau đi qua thật nhiều mùa hạnh phúc.</blockquote>
+<p>Người bạn thân</p>
+</article>
+</div></div>
+</section>
+<!-- 10. Section RSVP (Xác nhận tham dự) -->
+<section class="section rsvp" id="rsvp">
+<div class="heading reveal">
+<span class="eyebrow">Répondez s’il vous plaît</span>
+<h2>Bạn sẽ <em>đến chung vui?</em></h2>
+<p>Phản hồi được lưu và xác minh trực tiếp trong Google Sheets.</p>
+<p id="backendState" role="status">Đang kiểm tra kết nối biểu mẫu...</p>
+</div>
+<form id="rsvpForm">
+<label>Họ và tên
+          <input maxlength="80" name="name" required=""/>
+</label>
+<label>Số người
+          <input max="20" min="1" name="guests" required="" type="number" value="1"/>
+</label>
+<label>Số điện thoại, không bắt buộc
+            <input autocomplete="tel" maxlength="30" name="phone" type="tel"/>
+</label>
+<label>Sự kiện
+          <select name="event" required="">
+<option value="">Chọn buổi tiệc</option>
+<option>Tiệc nhà gái</option>
+<option>Tiệc nhà trai</option>
+<option>Cả hai buổi tiệc</option>
+</select>
+</label>
+<fieldset>
+<legend>Trạng thái</legend>
+<label><input name="attendance" required="" type="radio" value="Sẽ tham dự"/> Sẽ tham dự</label>
+<label><input name="attendance" type="radio" value="Không thể tham dự"/> Không thể tham dự</label>
+</fieldset>
+<label>Lời nhắn
+          <textarea maxlength="500" name="message" rows="4"></textarea>
+</label>
+<button class="btn dark">Gửi xác nhận</button>
+<p id="rsvpStatus" role="status"></p>
+</form>
+</section>
+<!-- 11. Section Closing (Lời cảm ơn) -->
+<section class="closing reveal">
+<picture>
+<source media="(min-width: 1024px)" srcset="assets/images/logo_liu_chiu_desktop.webp"/>
+<source media="(min-width: 768px)" srcset="assets/images/logo_liu_chiu_tablet.webp"/>
+<img alt="Logo Liu Chiu" loading="lazy" src="assets/images/logo_liu_chiu_mobile.webp"/>
+</picture>
+<h2>Cảm ơn bạn <em>đã là một phần</em> trong ngày đặc biệt.</h2>
+<p>Lan &amp; Chung · 12.12.2026</p>
+</section>
+</main>
+<!-- Footer -->
+<footer>
+<span>LAN &amp; CHUNG</span>
+<span>Hạ Long · Hà Nội</span>
+<span>12.12.2026</span>
+</footer>
+<!-- Các thành phần bổ trợ UI/UX -->
+<button class="music" id="music">♫ <span>Nhạc</span></button>
+<div class="toast" id="toast"></div>
+<div class="lightbox" hidden="" id="lightbox">
+<button id="close">×</button>
+<img alt="Ảnh phóng lớn" id="lightImg"/>
+</div>
 </body>
 </html>
