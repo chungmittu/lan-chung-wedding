@@ -1392,7 +1392,7 @@ button.is-active {
 
 
 /* ==========================================
-   BỐ CỤC LỜI CHÚC 2 CỘT HÀNG NGANG CHUẨN
+   BỐ CỤC CÂN BẰNG: 2 CỘT BẰNG NHAU (TRÁI & PHẢI)
    ========================================== */
 
 /* 1. Ẩn triệt để chữ "ĐÃ DUYỆT" / "MẪU" */
@@ -1406,60 +1406,63 @@ button.is-active {
   padding: 0 !important;
 }
 
-/* 2. Chia bố cục chính: Form trái (42%), Slider phải (58%) */
+/* 2. Chia bố cục chính: 2 cột có độ rộng bằng nhau tuyệt đối (1fr 1fr) và cao bằng nhau */
 #wishes .wish-layout {
   display: grid !important;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr) !important;
+  grid-template-columns: 1fr 1fr !important;
   gap: clamp(1.5rem, 3vw, 3rem) !important;
-  align-items: start !important;
+  align-items: stretch !important; /* Giúp khung bên phải tự co giãn chiều cao bằng bên trái */
   max-width: 1200px !important;
   margin: 2.5rem auto 0 !important;
 }
 
-/* 3. Khung bao quanh Slider */
+/* 3. Khung bao quanh Slider bên phải khớp toàn bộ chiều cao */
 #wishes .wish-slider-wrapper {
   width: 100% !important;
+  height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 1.25rem !important;
+  justify-content: space-between !important;
 }
 
 #wishes #wishList.wish-slider {
   display: flex !important;
-  gap: 1.25rem !important;
+  gap: 1rem !important;
   width: 100% !important;
-  min-height: 280px !important; /* Chiều cao cố định vừa vặn */
+  height: 100% !important;
+  min-height: 0 !important;
   background: transparent !important;
 }
 
-/* 4. Định dạng 2 ô lời chúc xếp hàng ngang rộng rãi */
+/* 4. Định dạng 2 ô lời chúc chia đều 50% khung, tự động khớp chiều cao với form trái */
 #wishes #wishList.wish-slider .wish {
-  flex: 0 0 calc(50% - 0.625rem) !important; /* Đúng 50% chiều rộng cho 2 ô */
-  width: calc(50% - 0.625rem) !important;
-  box-sizing: border-box !important;
+  flex: 1 1 0 !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  height: 100% !important;
   
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
   
-  padding: 2rem 1.5rem !important;
+  padding: 1.75rem 1.25rem !important;
   background: #fffdf9 !important;
   box-shadow: 0 10px 30px rgba(41, 39, 35, 0.06) !important;
   border-radius: 6px !important;
 }
 
-/* Lời chúc ở giữa ô */
+/* Nội dung câu chúc căn giữa ô */
 #wishes #wishList.wish-slider .wish blockquote {
   margin: auto 0 !important;
-  font-size: clamp(1.1rem, 1.4vw, 1.35rem) !important;
-  line-height: 1.55 !important;
+  font-size: clamp(1rem, 1.3vw, 1.25rem) !important;
+  line-height: 1.5 !important;
   text-align: center !important;
   font-family: var(--serif) !important;
   color: var(--ink) !important;
   word-break: break-word !important;
 }
 
-/* Tên người chúc góc dưới */
+/* Tên người chúc ở góc dưới */
 #wishes #wishList.wish-slider .wish p {
   margin: 1rem 0 0 0 !important;
   text-align: right !important;
@@ -1468,22 +1471,23 @@ button.is-active {
   color: var(--green) !important;
 }
 
-/* 5. Bộ nút bấm chuyển slide <> */
+/* 5. Bộ nút bấm chuyển slide cân đối ngay ngắn phía dưới */
 .wish-slider-controls {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 1.25rem !important;
+  margin-top: 1rem !important;
 }
 
 .wish-slider-controls button {
-  width: 42px !important;
-  height: 42px !important;
+  width: 40px !important;
+  height: 40px !important;
   border: 1px solid rgba(41, 39, 35, 0.25) !important;
   border-radius: 50% !important;
   background: #fffdf9 !important;
   cursor: pointer !important;
-  font-size: 1.25rem !important;
+  font-size: 1.2rem !important;
   display: grid !important;
   place-items: center !important;
   transition: all 0.25s ease !important;
@@ -1509,5 +1513,7 @@ button.is-active {
   #wishes #wishList.wish-slider .wish {
     flex: 0 0 100% !important;
     width: 100% !important;
+    height: auto !important;
+    min-height: 250px !important;
   }
 }
