@@ -1,197 +1,106 @@
-(function () {
-  const list =
-    document.querySelector('#wishList');
+let currentSlideIndex = 0;
+let autoSlideInterval = null;
 
-  if (!list) {
-    return;
-  }
+// Lấy số lượng thẻ hiển thị dựa theo kích thước màn hình
+function getItemsPerPage() {
+  if (window.innerWidth <= 640) return 1;
+  if (window.innerWidth <= 1024) return 2;
+  return 3; // Mặc định hiển thị 3 lời chúc trên máy tính
+}
 
-  list.classList.add('wish-slider');
+function updateWishSlider() {
+  const wishList = document.getElementById('wishList');
+  if (!wishList) return;
 
-  const controls =
-    document.createElement('div');
+  const wishes = Array.from(wishList.querySelectorAll('.wish'));
+  if (wishes.length === 0) return;
 
-  controls.className =
-    'wish-slider-controls';
+  const itemsPerPage = getItemsPerPage();
+  const totalPages = Math.ceil(wishes.length / itemsPerPage);
 
-  controls.innerHTML = `
-    <button
-      type="button"
-      class="wish-prev"
-      aria-label="Lời chúc trước"
-    >
-      ←
-    </button>
+  // Đảm bảo chỉ số trang hợp lệ
+  if (currentSlideIndex >= totalPages) currentSlideIndex = 0;
+  if (currentSlideIndex < 0) currentSlideIndex = totalPages - 1;
 
-    <div
-      class="wish-slider-dots"
-      aria-label="Chọn lời chúc"
-    ></div>
+  // Hiển thị/ẩn các lời chúc tương ứng với trang hiện tại
+  const startIndex = currentSlideIndex * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
 
-    <span
-      class="wish-slider-counter"
-      aria-live="polite"
-    ></span>
-
-    <button
-      type="button"
-      class="wish-next"
-      aria-label="Lời chúc tiếp theo"
-    >
-      →
-    </button>
-  `;
-
-  list.insertAdjacentElement(
-    'afterend',
-    controls
-  );
-
-  let index = 0;
-  let timer = null;
-
-  const dots =
-    controls.querySelector(
-      '.wish-slider-dots'
-    );
-
-  const counter =
-    controls.querySelector(
-      '.wish-slider-counter'
-    );
-
-  function cards() {
-    return [
-      ...list.querySelectorAll(
-        '.wish'
-      )
-    ];
-  }
-
-  function render(
-    nextIndex = index
-  ) {
-    const items = cards();
-
-    if (!items.length) {
-      controls.hidden = true;
-      return;
+  wishes.forEach((wish, index) => {
+    if (index >= startIndex && index < endIndex) {
+      wish.style.display = 'flex';
+      wish.classList.add('is-active');
+    } else {
+      wish.style.display = 'none';
+      wish.classList.remove('is-active');
     }
+  });
 
-    controls.hidden = false;
-
-    index =
-      (
-        nextIndex +
-        items.length
-      ) %
-      items.length;
-
-    items.forEach(
-      (card, cardIndex) => {
-        card.classList.toggle(
-          'is-active',
-          cardIndex === index
-        );
-      }
-    );
-
-    const dotButtons =
-      items.map((item, dotIndex) => {
-        const dot =
-          document.createElement(
-            'button'
-          );
-
-        dot.type = 'button';
-
-        dot.setAttribute(
-          'aria-label',
-          `Xem lời chúc ${
-            dotIndex + 1
-          }`
-        );
-
-        dot.classList.toggle(
-          'is-active',
-          dotIndex === index
-        );
-
-        dot.onclick = () => {
-          render(dotIndex);
-          restart();
-        };
-
-        return dot;
-      });
-
-    dots.replaceChildren(
-      ...dotButtons
-    );
-
-    counter.textContent =
-      `${index + 1} / ${items.length}`;
+  // Cập nhật bộ đếm trang (ví dụ: 1 / 3)
+  const counter = document.getElementById('wishCounter');
+  if (counter) {
+    counter.textContent = `${currentSlideIndex + 1} / ${totalPages}`;
   }
+}
 
-  function restart() {
-    clearInterval(timer);
+function nextWishSlide() {
+  currentSlideIndex++;
+  updateWishSlider();
+}
 
-    const reducedMotion =
-      window.matchMedia(
-        '(prefers-reduced-motion: reduce)'
-      ).matches;
+function prevWishSlide() {
+  currentSlideIndex--;
+  updateWishSlider();
+}
 
-    if (!reducedMotion) {
-      timer =
-        setInterval(() => {
-          render(index + 1);
-        }, 6000);
-    }
+function startAutoWishSlide() {
+  stopAutoWishSlide();
+  autoSlideInterval = setInterval(nextWishSlide, 3000); // Tự động chuyển sau 3 giây
+}
+
+function stopAutoWishSlide() {
+  if (autoSlideInterval) {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = null;
   }
+}
 
-  controls
-    .querySelector('.wish-prev')
-    .onclick = () => {
-      render(index - 1);
-      restart();
+// Khởi tạo slider
+function initWishSlider() {
+  const wishList = document.getElementById('wishList');
+  if (!wishList) return;
+
+  wishList.classList.add('wish-slider');
+  updateWishSlider();
+  startAutoWishSlide();
+
+  // Nút chuyển slide
+  const prevBtn = document.getElementById('prevWish');
+  const nextBtn = document.getElementById('nextWish');
+
+  if (prevBtn) {
+    prevBtn.onclick = () => {
+      prevWishSlide();
+      startAutoWishSlide();
     };
+  }
 
-  controls
-    .querySelector('.wish-next')
-    .onclick = () => {
-      render(index + 1);
-      restart();
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      nextWishSlide();
+      startAutoWishSlide();
     };
+  }
 
-  list.addEventListener(
-    'mouseenter',
-    () => {
-      clearInterval(timer);
-    }
-  );
+  // Rê chuột vào thì tạm dừng tự động chạy
+  wishList.addEventListener('mouseenter', stopAutoWishSlide);
+  wishList.addEventListener('mouseleave', startAutoWishSlide);
+}
 
-  list.addEventListener(
-    'mouseleave',
-    restart
-  );
+// Lắng nghe thay đổi kích thước màn hình
+window.addEventListener('resize', updateWishSlider);
 
-  /*
-   * Phát hiện lời chúc được tải từ
-   * Google Sheets hoặc vừa gửi.
-   */
-  const observer =
-    new Mu*ationObserver(() => {
-      render*0);
-      restart();
-    });
-
-  ob*erver.observe(
-    list,
-    {
-   *  childList: true
-    }
-  );
-
-  re*der(0);
-  restart();
-})();
+// Khởi tạo slider khi tải xong trang
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(initWishSlider, 300);
+});
