@@ -1429,74 +1429,68 @@ button.is-active {
 }
 
 /* ==========================================
-   SỬA GIAO DIỆN LỜI CHÚC CÂN ĐỐI (2 Ô NGANG)
+   FIX CHUẨN BỐ CỤC LỜI CHÚC (2 CỘT CÂN ĐỐI)
    ========================================== */
 
-/* Ẩn triệt để chữ "ĐÃ DUYỆT" / "MẪU" */
-#wishes .wish small,
-#wishes .wish-slider .wish small,
-#wishes #wishList .wish small {
-  display: none !important;
-  visibility: hidden !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Bố cục chia đôi: Form trái và Khung phải */
+/* 1. Khôi phục bố cục lưới chuẩn: Cột trái (Form) vừa vặn, Cột phải (Slider) rộng rãi */
 #wishes .wish-layout {
   display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: clamp(1.5rem, 3vw, 3rem) !important;
-  align-items: stretch !important;
-  max-width: 1200px !important;
+  grid-template-columns: minmax(340px, 0.85fr) minmax(0, 1.15fr) !important;
+  gap: 2.5rem !important;
+  align-items: start !important;
+  max-width: 1300px !important;
   margin: 2.5rem auto 0 !important;
 }
 
-/* Khung chứa slider bên phải */
+/* Ẩn nhãn nhỏ "ĐÃ DUYỆT" / "MẪU" */
+#wishes .wish small,
+#wishes .wish-slider .wish small {
+  display: none !important;
+}
+
+/* 2. Khung chứa slider bên phải */
 #wishes .wish-slider-wrapper {
-  width: 100% !important;
   display: flex !important;
   flex-direction: column !important;
-  justify-content: space-between !important;
+  gap: 1.5rem !important;
+  width: 100% !important;
 }
 
-/* Vùng chứa các thẻ lời chúc */
+/* 3. Vùng chứa danh sách lời chúc (Chia làm 2 cột bằng CSS Grid) */
 #wishes #wishList.wish-slider {
-  display: flex !important;
-  gap: 1rem !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 1.25rem !important;
   width: 100% !important;
-  min-height: 340px !important; /* Đặt chiều cao tối thiểu cố định để không bị bóp méo */
-  height: auto !important;
-  background: transparent !important;
-  overflow: hidden !important;
+  min-height: 340px !important;
 }
 
-/* Định dạng từng ô lời chúc (Chia đều 50% chiều ngang, dạng hình chữ nhật đứng vừa vặn) */
+/* 4. Định dạng mặc định ẩn tất cả thẻ lời chúc */
 #wishes #wishList.wish-slider .wish {
-  flex: 0 0 calc(50% - 0.5rem) !important;
-  width: calc(50% - 0.5rem) !important;
-  min-height: 340px !important;
-  
-  display: flex !important;
+  display: none !important;
   flex-direction: column !important;
   justify-content: space-between !important;
-  
   padding: 2rem 1.5rem !important;
   background: #fffdf9 !important;
   box-shadow: 0 10px 30px rgba(41, 39, 35, 0.06) !important;
   border-radius: 6px !important;
+  min-height: 340px !important;
   box-sizing: border-box !important;
+}
+
+/* Chỉ hiển thị các thẻ được JS kích hoạt class .is-active */
+#wishes #wishList.wish-slider .wish.is-active {
+  display: flex !important;
 }
 
 /* Nội dung câu chúc căn giữa */
 #wishes #wishList.wish-slider .wish blockquote {
   margin: auto 0 !important;
-  font-size: clamp(1.1rem, 1.4vw, 1.35rem) !important;
+  font-size: clamp(1.1rem, 1.35vw, 1.3rem) !important;
   line-height: 1.5 !important;
   text-align: center !important;
-  font-family: var(--serif) !important;
-  color: var(--ink) !important;
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif !important;
+  color: #292723 !important;
   word-break: break-word !important;
 }
 
@@ -1506,16 +1500,15 @@ button.is-active {
   text-align: right !important;
   font-size: 0.85rem !important;
   font-weight: 600 !important;
-  color: var(--green) !important;
+  color: #397f7d !important;
 }
 
-/* Bộ nút bấm chuyển slide <> */
+/* 5. Bộ nút bấm chuyển trang <> */
 .wish-slider-controls {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   gap: 1.25rem !important;
-  margin-top: 1.5rem !important;
 }
 
 .wish-slider-controls button {
@@ -1532,15 +1525,15 @@ button.is-active {
 }
 
 .wish-slider-controls button:hover {
-  background: var(--green) !important;
+  background: #397f7d !important;
   color: #ffffff !important;
-  border-color: var(--green) !important;
+  border-color: #397f7d !important;
 }
 
 .wish-slider-counter {
   font-size: 0.85rem !important;
   font-weight: 600 !important;
-  color: var(--ink) !important;
+  color: #292723 !important;
 }
 
 /* Responsive cho màn hình điện thoại */
@@ -1548,8 +1541,7 @@ button.is-active {
   #wishes .wish-layout {
     grid-template-columns: 1fr !important;
   }
-  #wishes #wishList.wish-slider .wish {
-    flex: 0 0 100% !important;
-    width: 100% !important;
+  #wishes #wishList.wish-slider {
+    grid-template-columns: 1fr !important;
   }
 }
