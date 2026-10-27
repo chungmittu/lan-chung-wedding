@@ -22,11 +22,12 @@ function updateWishSlider() {
   const startIndex = currentSlideIndex * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
+  // Sử dụng class .is-active để điều khiển hiển thị thay vì đổi trực tiếp style.display
   wishes.forEach((wish, index) => {
     if (index >= startIndex && index < endIndex) {
-      wish.style.display = 'flex';
+      wish.classList.add('is-active');
     } else {
-      wish.style.display = 'none';
+      wish.classList.remove('is-active');
     }
   });
 
