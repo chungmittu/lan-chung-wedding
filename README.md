@@ -1,6 +1,6 @@
 # Thiệp cưới Lan & Chung
 
-Website thiệp cưới tĩnh, thiết kế responsive cho ngày 12.12.2026. Trang sử dụng HTML, CSS và JavaScript thuần; RSVP và lời chúc được lưu qua Google Apps Script vào Google Sheets.
+Website thiệp cưới online, thiết kế responsive cho ngày 12.12.2026. Trang sử dụng HTML, CSS và JavaScript thuần; RSVP và lời chúc được lưu qua Google Apps Script vào Google Sheets.
 
 ## Chạy thử
 
