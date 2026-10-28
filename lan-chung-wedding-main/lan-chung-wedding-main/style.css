@@ -1,0 +1,1793 @@
+/* ==========================================
+   1. CẤU HÌNH GỐC & BIẾN MÀU (CSS VARIABLES)
+   ========================================== */
+:root {
+  --cream: #f6efe8;
+  --paper: #fffdf9;
+  --ink: #292723;
+  --green: #397f7d;
+  --rose: #d88a80;
+  --pink: #deb6b4;
+  --gold: #e9ad32;
+  --line: rgba(41, 39, 35, .17);
+  --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --sans: 'Manrope', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+  background: var(--paper);
+  font: clamp(14px, 1.05vw, 16px)/1.72 var(--sans);
+  overflow-x: hidden;
+}
+
+body.locked {
+  overflow: hidden;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+section[id] {
+  scroll-margin-top: 92px;
+}
+
+img {
+  max-width: 100%;
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+/* Truy cập nhanh cho Screen Reader */
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 2000;
+  background: #fff;
+  padding: 1rem;
+}
+
+a {
+  color: inherit;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  font-size: .65rem;
+  font-weight: 600;
+}
+
+
+/* ==========================================
+   2. TRANG BÌA (COVER OVERLAY)
+   ========================================== */
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: var(--cream);
+  background-image:
+    linear-gradient(rgba(246, 239, 232, .2), rgba(246, 239, 232, .2)),
+    url("assets/images/cover-floral.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto, 100% 100%;
+  padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left));
+  transition: .6s;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.cover.open {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cover-card {
+  position: relative;
+  width: min(92vw, 1760px);
+  height: min(92svh, 920px);
+  max-height: none;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(.35rem, 1.15vh, 1rem);
+  padding: clamp(1rem, 2.5vw, 3rem);
+  background: transparent;
+  text-align: center;
+}
+
+.cover-card > .eyebrow { order: 0; margin: 0; }
+.cover-card > picture { order: 1; display: block; width: min(31vw, 460px); max-height: 34svh; margin: clamp(.2rem, 1vh, .8rem) auto; }
+.cover-card > picture img { display: block; width: 100%; max-height: inherit; object-fit: contain; }
+.cover-card > h1 { order: 2; font-size: clamp(3.1rem, 7.5vw, 8rem); line-height: .84; white-space: nowrap; margin: clamp(.1rem, .8vh, .6rem) 0; }
+.cover-card > p { order: 3; margin: 0; letter-spacing: .32em; }
+.cover-card > .btn { order: 4; margin-top: clamp(.3rem, 1.2vh, 1rem); }
+
+@media (max-width: 480px) {
+  .cover {
+    background-image:
+      linear-gradient(rgba(246, 239, 232, .16), rgba(246, 239, 232, .16)),
+      url("assets/images/cover-floral-mobile.svg");
+  }
+}
+
+.cover h1, .hero h2, .heading h2, .count h2, .family h2, .closing h2, h3 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: .95;
+}
+
+.cover h1 i, .hero h2 i, .heading em, .closing em {
+  font-style: normal;
+  color: var(--rose);
+}
+
+
+/* ==========================================
+   3. NÚT BẤM (BUTTONS) & HEADER / NAVIGATION
+   ========================================== */
+.btn {
+  min-height: 44px;
+  padding: .85rem 1.25rem;
+  border: 0;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-size: .65rem;
+  cursor: pointer;
+}
+
+.dark {
+  background: var(--ink);
+  color: #fff;
+}
+
+.outline {
+  background: transparent;
+  border: 1px solid currentColor;
+}
+
+.btn:disabled {
+  opacity: .45;
+}
+
+header {
+  height: 76px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: max(1rem, env(safe-area-inset-left));
+  padding-right: max(1rem, env(safe-area-inset-right));
+  background: rgba(255, 253, 249, .92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand img {
+  display: block;
+  width: 78px;
+  height: 48px;
+  object-fit: contain;
+}
+
+nav {
+  display: flex;
+  gap: clamp(.9rem, 2vw, 1.7rem);
+}
+
+nav a, .menu, .share {
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .62rem;
+}
+
+.menu, .share {
+  border: 0;
+  background: none;
+  min-height: 44px;
+}
+
+.menu {
+  display: none;
+}
+
+
+/* ==========================================
+   4. CÁC PHẦN NỘI DUNG CHÍNH (SECTIONS)
+   ========================================== */
+.hero {
+  min-height: calc(100svh - 76px);
+  display: grid;
+  grid-template-columns: minmax(0, 58%) minmax(0, 42%);
+  background: var(--cream);
+}
+
+.hero figure {
+  margin: 0;
+  position: relative;
+  min-height: 620px;
+}
+
+.hero figure img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.hero figcaption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  background: rgba(255, 255, 255, .9);
+  padding: .45rem .7rem;
+  font-size: .52rem;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+}
+
+.hero-copy {
+  align-self: center;
+  padding: clamp(2rem, 6vw, 7rem);
+}
+
+.hero h2 {
+  font-size: clamp(4.3rem, 10vw, 9rem);
+  margin: 1rem 0;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-block: 1px solid var(--line);
+  padding: 1rem 0;
+  margin: 2rem 0;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .62rem;
+}
+
+.date b {
+  font: 2rem var(--serif);
+}
+
+.section {
+  padding: clamp(4.5rem, 10vw, 10rem) max(1.25rem, 7vw);
+}
+
+.heading {
+  max-width: 960px;
+}
+
+.heading h2, .family h2 {
+  font-size: clamp(3.2rem, 8vw, 7.5rem);
+  letter-spacing: -.035em;
+  margin: .6rem 0 1.5rem;
+}
+
+.heading em {
+  display: block;
+}
+
+.center {
+  text-align: center;
+  margin-inline: auto;
+}
+
+
+/* ==========================================
+   5. CÂU CHUYỆN (STORY & TIMELINE)
+   ========================================== */
+.story {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: clamp(3rem, 9vw, 9rem);
+  margin-top: 4rem;
+}
+
+.story figure {
+  margin: 0;
+}
+
+.story figure p {
+  font: 2rem/1.35 var(--serif);
+  color: var(--green);
+}
+
+.story figure img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.timeline {
+  border-left: 1px solid var(--line);
+  padding-left: clamp(1.4rem, 4vw, 4rem);
+}
+
+.timeline article {
+  position: relative;
+  padding-bottom: 3.4rem;
+}
+
+.timeline article > b {
+  position: absolute;
+  right: 100%;
+  margin-right: 1rem;
+  font: 3rem var(--serif);
+  opacity: .16;
+}
+
+.timeline h3 {
+  font-size: 2.4rem;
+  margin: .6rem 0;
+}
+
+.timeline time {
+  color: var(--green);
+  font-size: .7rem;
+}
+
+.timeline small {
+  display: block;
+  border-left: 2px solid var(--pink);
+  padding-left: 1rem;
+  color: #666;
+}
+
+.story-date {
+  display: inline-block;
+  padding: .08em .42em;
+  border-radius: .2em;
+  background: rgba(216, 138, 128, .16);
+  color: var(--green);
+  font-weight: 600;
+  letter-spacing: .035em;
+  white-space: nowrap;
+}
+
+
+/* ==========================================
+   6. ALBUM ẢNH (GALLERY)
+   ========================================== */
+.gallery {
+  background: var(--cream);
+}
+
+.photos {
+  columns: 3;
+  column-gap: 1rem;
+  margin-top: 3rem;
+}
+
+.photo {
+  display: inline-block;
+  width: 100%;
+  border: 0;
+  padding: 0;
+  margin: 0 0 1rem;
+  overflow: hidden;
+  background: #ddd;
+  min-width: 0;
+  break-inside: avoid;
+}
+
+.photo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  transition: .5s;
+}
+
+.photo:hover img {
+  transform: none;
+}
+
+/* ==========================================
+   7. ĐẾM NGƯỢC & LỊCH (COUNTDOWN & CALENDAR)
+   ========================================== */
+.count {
+  text-align: center;
+  background: var(--green);
+  color: white;
+  padding: clamp(5rem, 9vw, 8rem) max(1rem, 4vw);
+}
+
+.count h2 {
+  font-size: clamp(2.8rem, 6vw, 6rem);
+  margin: 1rem;
+}
+
+.count-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 1000px;
+  margin: 3rem auto;
+  gap: clamp(.5rem, 5vw, 5rem);
+}
+
+.count-grid div {
+  display: grid;
+}
+
+.count-grid b {
+  font: clamp(2.8rem, 7vw, 7rem)/1 var(--serif);
+  font-variant-numeric: tabular-nums;
+}
+
+.count-grid span {
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .58rem;
+}
+
+.calendar-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: clamp(3rem, 9vw, 9rem);
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  gap: .7rem;
+  flex-wrap: wrap;
+}
+
+.calendar {
+  border: 1px solid var(--line);
+  padding: clamp(1rem, 3vw, 3rem);
+  min-width: 0;
+}
+
+.week, .days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  text-align: center;
+}
+
+.week {
+  font-size: .6rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: .8rem;
+}
+
+.days span {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font: clamp(.9rem, 2vw, 1.2rem) var(--serif);
+}
+
+.days .muted {
+  opacity: .25;
+}
+
+.days .today {
+  background: var(--rose);
+  color: white;
+  border-radius: 50%;
+}
+
+
+/* ==========================================
+   8. SỰ KIỆN & GIA ĐÌNH (EVENTS & FAMILY)
+   ========================================== */
+.events {
+  background: var(--cream);
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 1200px;
+  margin: 3rem auto 0;
+}
+
+.event {
+  position: relative;
+  padding: clamp(2rem, 5vw, 5rem);
+  background: var(--paper);
+}
+
+.event.rose {
+  background: var(--pink);
+}
+
+.event > span {
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+  font: 4rem var(--serif);
+  opacity: .14;
+}
+
+.event h3 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  margin: 1.5rem 0;
+}
+
+.event-date {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  border-block: 1px solid var(--line);
+  padding: 1rem 0;
+  margin-bottom: 1.7rem;
+}
+
+.event-date b {
+  font: 3rem var(--serif);
+}
+
+address {
+  font-style: normal;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.links a, .links button {
+  border: 0;
+  background: none;
+  padding: .45rem 0;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  font-size: .65rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.family {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.family > .eyebrow {
+  display: block;
+  color: var(--ink);
+}
+
+.family > h2 {
+  max-width: 760px;
+  margin: .7rem auto 2.4rem;
+  font-size: clamp(3.2rem, 7vw, 5.8rem);
+  line-height: .9;
+  letter-spacing: -.045em;
+}
+
+.family-groups {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.family-card {
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.5rem, 3vw, 2.75rem) 1rem;
+  border-block: 1px solid rgba(41, 39, 35, .16);
+  background: transparent;
+}
+
+.family-card small {
+  width: fit-content;
+  margin: 0 auto 1.15rem;
+  color: var(--ink);
+  font-size: .75rem;
+}
+
+.family-card p {
+  display: grid;
+  gap: .35rem;
+  margin: 0;
+  font: clamp(1.25rem, 2vw, 1.65rem)/1.5 var(--serif);
+}
+
+.family-card b {
+  font-weight: 500;
+}
+
+.family-emblem {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(150px, 17vw, 210px);
+  min-height: 190px;
+}
+
+.family-emblem::before,
+.family-emblem::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 38px;
+  background: linear-gradient(transparent, rgba(41, 39, 35, .2), transparent);
+}
+
+.family-emblem::before {
+  top: 0;
+}
+
+.family-emblem::after {
+  bottom: 0;
+}
+
+.family-emblem img {
+  display: block;
+  width: min(100%, 190px);
+  filter: drop-shadow(0 8px 18px rgba(41, 39, 35, .08));
+}
+
+
+/* ==========================================
+   9. MỪNG CƯỚI & LỜI CHÚC (GIFT & GUESTBOOK V2)
+   ========================================== */
+.gift {
+  background: var(--ink);
+  color: white;
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+.gift-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.gift-grid article {
+  border: 1px solid rgba(255, 253, 249, .18);
+  border-top: 2px solid rgba(216, 138, 128, .55);
+  background: linear-gradient(145deg, #fffdf9, #f3e8e2);
+  color: var(--ink);
+  padding: 2rem;
+  text-align: center;
+}
+
+.gift-grid article > small {
+  display: inline-block;
+  color: #8d625e;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.qr-frame {
+  width: min(100%, 240px);
+  margin: 1.5rem auto;
+  padding: 10px;
+  background: linear-gradient(135deg, #ead5cf, #f7eee8 52%, #e9e4d8);
+}
+
+.qr {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  margin: 0;
+  border: 0;
+  background: white;
+}
+
+.bank-info {
+  display: grid;
+  gap: .25rem;
+  margin: 0;
+  font-size: .85rem;
+}
+
+.bank-info strong {
+  font-size: 1rem;
+  letter-spacing: .04em;
+}
+
+.copy-account {
+  width: 100%;
+  margin-top: 1rem;
+  border-color: rgba(57, 127, 125, .55);
+  color: var(--green);
+  transition: background-color .2s, color .2s;
+}
+
+.copy-account:hover {
+  background: var(--green);
+  color: white;
+}
+
+/* Guestbook V2: form bên trái, danh sách lời chúc bên phải */
+.wishes {
+  background: #eee4dc;
+}
+
+.wish-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  margin-top: 3rem;
+}
+
+.wish {
+  background: white;
+  padding: 2rem;
+}
+
+.wish blockquote {
+  font: 1.5rem/1.4 var(--serif);
+  margin: 1.2rem 0;
+}
+
+.wish p {
+  text-align: right;
+}
+
+.wish-layout form, .rsvp form {
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--green);
+  color: white;
+}
+
+
+/* ==========================================
+   10. XÁC NHẬN THAM DỰ (RSVP FORM)
+   ========================================== */
+.rsvp {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  background: var(--green);
+  color: white;
+}
+
+.rsvp form {
+  padding: 0;
+}
+
+.rsvp .heading em {
+  color: #f2c8c3;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+form label, fieldset {
+  display: grid;
+  gap: .35rem;
+  font-size: .67rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+input, textarea, select {
+  width: 100%;
+  min-height: 44px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  padding: .7rem .1rem;
+  outline: 0;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 16px;
+}
+
+select option {
+  color: #222;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+}
+
+fieldset label {
+  display: flex;
+  align-items: center;
+}
+
+fieldset input {
+  width: auto;
+}
+
+
+/* ==========================================
+   11. PHẦN CUỐI & THÀNH PHẦN PHỤ (FOOTER & UI)
+   ========================================== */
+.closing {
+  text-align: center;
+  padding: clamp(6rem, 10vw, 10rem) 1.25rem;
+  background: var(--cream);
+}
+
+.closing img {
+  width: min(360px, 80vw);
+}
+
+.closing h2 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+.closing em {
+  display: block;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem max(1rem, 4vw) calc(2rem + env(safe-area-inset-bottom));
+  background: var(--ink);
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .6rem;
+}
+
+.music {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 90;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .45rem;
+  min-width: 56px;
+  height: 56px;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, .92);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(41, 39, 35, .1);
+  overflow: visible;
+}
+
+.music > span:first-child {
+  position: relative;
+  z-index: 1;
+  font-size: 1.15rem;
+}
+
+.music-label {
+  position: relative;
+  z-index: 1;
+  font-size: .68rem;
+}
+
+.music.is-open > span:first-child {
+  animation: music-note 1.1s ease-in-out infinite;
+}
+
+@keyframes music-note {
+  0%, 100% { transform: rotate(-8deg) translateY(0); }
+  50% { transform: rotate(10deg) translateY(-2px); }
+}
+
+.music.is-open {
+  animation: music-button-sway 1.1s ease-in-out infinite;
+}
+
+.music.is-open::before,
+.music.is-open::after {
+  position: absolute;
+  z-index: -1;
+  color: var(--green);
+  font-family: var(--serif);
+  line-height: 1;
+  pointer-events: none;
+  animation: music-note-float 1.8s ease-out infinite;
+}
+
+.music.is-open::before {
+  content: "♪";
+  top: -13px;
+  left: 8px;
+  font-size: 1.2rem;
+}
+
+.music.is-open::after {
+  content: "♫";
+  top: -18px;
+  right: 7px;
+  color: var(--rose);
+  font-size: 1.35rem;
+  animation-delay: .9s;
+}
+
+@keyframes music-button-sway {
+  0%, 100% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(3deg) translateY(-3px); }
+}
+
+@keyframes music-note-float {
+  0% { opacity: 0; transform: translate(0, 8px) scale(.8); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(10px, -25px) scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .music.is-open,
+  .music.is-open > span:first-child,
+  .music.is-open::before,
+  .music.is-open::after {
+    animation: none;
+  }
+}
+
+.music-audio-player {
+  position: fixed;
+  left: -220px;
+  bottom: 0;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.music-audio-player iframe {
+  width: 200px;
+  height: 200px;
+  border: 0;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(2rem + env(safe-area-inset-bottom));
+  z-index: 1200;
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  background: var(--ink);
+  color: white;
+  padding: .7rem 1rem;
+  transition: .25s;
+  max-width: calc(100vw - 2rem);
+  text-align: center;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  background: rgba(20, 20, 18, .95);
+  display: grid;
+  place-items: center;
+  padding: 4vw;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox img {
+  max-width: 92vw;
+  max-height: 82vh;
+  object-fit: contain;
+}
+
+.lightbox button {
+  position: absolute;
+  right: max(1rem, env(safe-area-inset-right));
+  top: max(1rem, env(safe-area-inset-top));
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: white;
+  font-size: 3rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: .7s;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+
+/* ==========================================
+   12. MEDIA QUERIES & RESPONSIVE DESIGN
+   ========================================== */
+@media(max-width: 1024px) {
+  nav { gap: .8rem; }
+  .hero figure { min-height: 560px; }
+  .event h3 { font-size: 4.4rem; }
+  .gift { grid-template-columns: 1fr; }
+  .gift-grid { max-width: 760px; }
+  .story { gap: 3rem; }
+  .photos { columns: 2; }
+}
+
+@media(max-width: 768px) {
+  .menu { display: block; }
+  nav {
+    display: none;
+    position: absolute;
+    top: 76px;
+    left: 0;
+    right: 0;
+    background: var(--paper);
+    padding: 1rem;
+    flex-direction: column;
+    text-align: center;
+    box-shadow: 0 12px 22px rgba(0, 0, 0, .08);
+  }
+  nav.open { display: flex; }
+  .share { display: none; }
+  .hero { grid-template-columns: 1fr; }
+  .hero figure { min-height: 56svh; }
+  .hero-copy { padding: 4rem max(1.25rem, 7vw); }
+  .story, .calendar-section, .gift, .rsvp, .wish-layout { grid-template-columns: 1fr; }
+  .event-grid { grid-template-columns: 1fr; }
+  .family-groups {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 480px;
+  }
+  .family-card { min-height: 0; padding: 1.5rem .75rem; }
+  .family-emblem {
+    width: 100%;
+    min-height: 110px;
+    order: 2;
+  }
+  .family-emblem::before,
+  .family-emblem::after {
+    top: 50%;
+    bottom: auto;
+    width: min(24vw, 100px);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(41, 39, 35, .2), transparent);
+  }
+  .family-emblem::before { left: 8%; }
+  .family-emblem::after { left: auto; right: 8%; }
+  .family-emblem img { width: 145px; }
+  .family-card + .family-emblem + .family-card { order: 3; }
+  .gift-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .count-grid { gap: .6rem; }
+  .timeline article > b { display: none; }
+}
+
+@media(max-width: 480px) {
+  header { height: 68px; }
+  section[id] { scroll-margin-top: 84px; }
+  .brand img { width: 64px; height: 42px; }
+  nav { top: 68px; }
+  .cover-card { padding: 1.25rem; }
+  .hero { min-height: auto; }
+  .hero figure { min-height: 50svh; }
+  .hero-copy { padding: 3rem 1.25rem; }
+  .hero h2 { font-size: clamp(4rem, 22vw, 6rem); }
+  .date { justify-content: center; gap: .6rem; }
+  .section { padding: 4.5rem 1.1rem; }
+  .heading h2, .family h2 { font-size: clamp(3rem, 17vw, 4.8rem); }
+  .photos { columns: 1; column-gap: 0; }
+  .count { padding-inline: .55rem; }
+  .count h2 { font-size: 2.5rem; }
+  .count-grid b { font-size: clamp(2.1rem, 12vw, 3rem); }
+  .count-grid span { font-size: .55rem; }
+  .calendar { padding: .7rem; }
+  .days span { font-size: .9rem; }
+  .event { padding: 3rem 1.15rem; }
+  .event h3 { font-size: 3.7rem; }
+  .event-date { gap: 1rem; }
+  .event-date b { font-size: 2.6rem; }
+  .links { flex-direction: column; align-items: flex-start; }
+  .gift-grid { grid-template-columns: 1fr; }
+  .family > h2 { font-size: clamp(3rem, 15vw, 4.4rem); }
+  .music-label { display: none; }
+  .music { width: 48px; min-width: 48px; height: 48px; padding: 0; }
+  .toast { bottom: calc(5rem + env(safe-area-inset-bottom)); }
+  form label, fieldset { font-size: .72rem; }
+  footer { flex-direction: column; text-align: center; padding-bottom: 5rem; }
+}
+
+@media(max-width: 360px) {
+  .eyebrow { letter-spacing: .14em; }
+  .count-grid b { font-size: 2rem; }
+  .count-grid span { font-size: .5rem; }
+  .event h3 { font-size: 3.2rem; }
+  .date span { font-size: .54rem; }
+  .date b { font-size: 1.7rem; }
+}
+
+@media(orientation: landscape) and (max-height: 520px) {
+  .cover-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: .25rem 1rem;
+    padding: 1rem;
+  }
+  .cover-card img { grid-row: 1/6; width: min(300px, 42vw); }
+  .cover-card h1 { font-size: 3rem; }
+  .hero figure { min-height: 90svh; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *:before, *:after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+
+/* ==========================================
+   13. TÙY CHỈNH RIÊNG V4.1 - V4.2 (HERO & COVER)
+   ========================================== */
+.hero figure picture { display: block; width: 100%; height: 100%; }
+.hero figure picture img { width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
+
+@media(max-width: 768px) {
+  .hero figure { min-height: clamp(520px, 72svh, 760px); }
+  .hero figure picture img { object-position: center 34%; }
+}
+@media(max-width: 480px) {
+  .hero figure { min-height: clamp(500px, 68svh, 680px); }
+  .hero figure picture img { object-position: center 32%; }
+}
+@media(max-width: 360px) {
+  .hero figure { min-height: 500px; }
+  .hero figure picture img { object-position: center 30%; }
+}
+@media(orientation: landscape) and (max-height: 520px) {
+  .hero figure { min-height: 92svh; }
+  .hero figure picture img { object-position: center 36%; }
+}
+
+/* V4.2 Opening cover repair */
+.cover { overflow: hidden; isolation: isolate; }
+@media(max-width: 768px) {
+  .cover-card { width: calc(100vw - 2rem); height: calc(100svh - 2rem); padding: 1.25rem; }
+  .cover-card > picture { width: min(72vw, 360px); max-height: 30svh; }
+  .cover-card > picture img { max-height: 30svh; }
+  .cover-card > h1 { font-size: clamp(3rem, 15vw, 6rem); white-space: normal; line-height: .88; }
+}
+@media(max-width: 480px) {
+  .cover-card { gap: .55rem; }
+  .cover-card > picture { width: min(76vw, 330px); max-height: 27svh; }
+  .cover-card > picture img { max-height: 27svh; }
+  .cover-card > h1 { font-size: clamp(3rem, 17vw, 5rem); }
+  .cover-card > p { font-size: .78rem; }
+  .cover-card > .btn { margin-top: .35rem; }
+}
+@media(orientation: landscape) and (max-height: 520px) {
+  .cover-card {
+    display: grid;
+    grid-template-columns: minmax(180px, .8fr) minmax(260px, 1.2fr);
+    grid-template-rows: auto auto auto auto;
+    gap: .2rem 1.5rem;
+    text-align: center;
+    height: calc(100svh - 1rem);
+    width: calc(100vw - 1rem);
+    padding: .7rem 1.5rem;
+  }
+  .cover-card > .eyebrow { grid-column: 2; grid-row: 1; }
+  .cover-card > picture { grid-column: 1; grid-row: 1/5; width: min(38vw, 320px); max-height: 86svh; }
+  .cover-card > picture img { max-height: 86svh; }
+  .cover-card > h1 { grid-column: 2; grid-row: 2; font-size: clamp(2.8rem, 8vw, 5rem); white-space: nowrap; }
+  .cover-card > p { grid-column: 2; grid-row: 3; }
+  .cover-card > .btn { grid-column: 2; grid-row: 4; justify-self: center; margin: 0; }
+}/* Guestbook V2: form on the left, approved wishes on the right */
+#wishes .wish-layout {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.82fr) minmax(0, 1.18fr);
+  grid-template-areas: "form list";
+  gap: clamp(2rem, 5vw, 5.5rem);
+  align-items: start;
+  max-width: 1500px;
+  margin: clamp(3rem, 6vw, 5.5rem) auto 0;
+}
+
+#wishes #wishForm {
+  grid-area: form;
+  position: sticky;
+  top: 96px;
+  min-height: auto;
+  padding: clamp(2rem, 4vw, 3.75rem);
+  background: #397f7d;
+  color: #fff;
+}
+
+#wishes #wishForm h3 {
+  margin: 0 0 2.25rem;
+  font-size: clamp(2rem, 3.2vw, 3.25rem);
+  line-height: 1.05;
+}
+
+#wishes #wishForm label {
+  margin-bottom: 1.5rem;
+}
+
+#wishes #wishForm input,
+#wishes #wishForm textarea {
+  width: 100%;
+  color: #fff;
+  border-color: rgba(255,255,255,.72);
+}
+
+#wishes #wishForm textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+#wishes #wishForm .btn {
+  margin-top: .5rem;
+  background: #fff;
+  color: #292723;
+}
+
+#wishes #wishStatus {
+  min-height: 1.5rem;
+  margin: 1rem 0 0;
+  font-size: .78rem;
+  line-height: 1.55;
+}
+
+#wishes #wishList {
+  grid-area: list;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  max-height: 720px;
+  overflow-y: auto;
+  padding: 0 .5rem 0 0;
+  scrollbar-width: thin;
+  scrollbar-color: #d88a80 transparent;
+}
+
+#wishes #wishList::-webkit-scrollbar { width: 7px; }
+#wishes #wishList::-webkit-scrollbar-thumb {
+  background: #d88a80;
+  border-radius: 99px;
+}
+
+#wishes .wish {
+  min-height: 235px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1.5rem, 2.5vw, 2.35rem);
+  background: #fffdf9;
+  box-shadow: 0 16px 38px rgba(41,39,35,.06);
+}
+
+#wishes .wish small {
+  color: #397f7d;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+}
+
+#wishes .wish blockquote {
+  margin: 1.25rem 0;
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+#wishes .wish p {
+  margin: 0;
+  text-align: right;
+  font-size: .82rem;
+  font-weight: 600;
+}
+
+@media (max-width: 1024px) {
+  #wishes .wish-layout {
+    grid-template-columns: minmax(300px, .9fr) minmax(0, 1.1fr);
+    gap: 2rem;
+  }
+
+  #wishes #wishList {
+    grid-template-columns: 1fr;
+    max-height: 680px;
+  }
+
+  #wishes .wish { min-height: 190px; }
+}
+
+@media (max-width: 768px) {
+  #wishes .wish-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "form"
+      "list";
+  }
+
+  #wishes #wishForm {
+    position: static;
+    top: auto;
+  }
+
+  #wishes #wishList {
+    grid-template-columns: 1fr;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+  }
+}
+#wishes #wishList.wish-slider .wish small {
+  display: none !important;
+}
+/* Wishes carousel:
+   một lời chúc mỗi slide */
+
+#wishes #wishList.wish-slider {
+  position: relative;
+
+  display: block;
+
+  max-height: none;
+  min-height: 360px;
+
+  overflow: hidden;
+  padding: 0;
+}
+
+#wishes
+#wishList.wish-slider
+.wish {
+  display: none;
+
+  min-height: 360px;
+
+  padding:
+    clamp(2rem, 4vw, 4rem);
+
+  background: #fffdf9;
+
+  box-shadow:
+    0 18px 50px
+    rgba(41, 39, 35, 0.07);
+
+  opacity: 0;
+
+  transform:
+    translateX(24px);
+}
+
+#wishes
+#wishList.wish-slider
+.wish.is-active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  opacity: 1;
+
+  transform:
+    translateX(0);
+
+  animation:
+    wishSlideIn
+    0.45s
+    ease
+    both;
+}
+
+#wishes
+#wishList.wish-slider
+.wish small {
+  display: none !important;
+}
+
+#wishes
+#wishList.wish-slider
+.wish blockquote {
+  margin:
+    0
+    0
+    2rem;
+
+  font-size:
+    clamp(
+      1.8rem,
+      3.1vw,
+      3.4rem
+    );
+
+  line-height: 1.3;
+  text-align: center;
+}
+
+#wishes
+#wishList.wish-slider
+.wish p {
+  margin: 0;
+
+  text-align: center;
+
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.wish-slider-controls {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 1rem;
+
+  margin-top: 1.25rem;
+}
+
+.wish-slider-controls button {
+  width: 44px;
+  height: 44px;
+
+  border:
+    1px solid
+    rgba(41, 39, 35, 0.25);
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  cursor: pointer;
+
+  font-size: 1.2rem;
+}
+
+.wish-slider-controls button:hover {
+  background: #397f7d;
+  color: #ffffff;
+
+  border-color: #397f7d;
+}
+
+.wish-slider-controls button:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.wish-slider-dots {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 0.45rem;
+}
+
+.wish-slider-dots button {
+  width: 8px;
+  height: 8px;
+
+  min-width: 8px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background:
+    rgba(41, 39, 35, 0.25);
+}
+
+.wish-slider-dots
+button.is-active {
+  background: #d88a80;
+
+  transform: scale(1.25);
+}
+
+.wish-slider-counter {
+  min-width: 3.5rem;
+
+  text-align: center;
+
+  font-size: 0.7rem;
+
+  letter-spacing: 0.08em;
+
+  color: #666666;
+}
+
+@keyframes wishSlideIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateX(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  #wishes
+  #wishList.wish-slider,
+
+  #wishes
+  #wishList.wish-slider
+  .wish {
+    min-height: 290px;
+  }
+
+  #wishes
+  #wishList.wish-slider
+  .wish {
+    padding:
+      2rem
+      1.5rem;
+  }
+
+  #wishes
+  #wishList.wish-slider
+  .wish blockquote {
+    font-size:
+      clamp(
+        1.55rem,
+        7vw,
+        2.5rem
+      );
+  }
+}
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+  #wishes
+  #wishList.wish-slider
+  .wish.is-active {
+    animation: none;
+  }
+
+  .wish-slider-controls button {
+    transition: none;
+  }
+}
+
+/* ==========================================
+   TỐI ƯU CỠ CHỮ & KHOẢNG CÁCH TRANG BÌA (COVER)
+   ========================================== */
+
+/* Phóng to chữ "WEDDING INVITATION" cho cân đối */
+.cover-card > .eyebrow {
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem) !important;
+  letter-spacing: 0.28em !important;
+  margin-bottom: 0.25rem !important;
+}
+
+/* Căn chỉnh kích thước Logo vừa vặn */
+.cover-card > picture {
+  width: min(28vw, 340px) !important;
+  max-height: 28svh !important;
+}
+
+.cover-card > picture img {
+  display: block;
+  width: 100%;
+  max-height: 28svh;
+  object-fit: contain;
+}
+
+/* Thu nhỏ tên "Lan & Chung" lại một chút cho đỡ bị tràn và thanh lịch hơn */
+.cover-card > h1 {
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem) !important;
+  line-height: 1.1 !important;
+  margin: 0.4rem 0 !important;
+}
+
+/* Ngày tháng năm (12 · 12 · 2026) */
+.cover-card > p {
+  font-size: clamp(0.85rem, 1.1vw, 1.1rem) !important;
+  letter-spacing: 0.25em !important;
+  margin-top: 0.15rem !important;
+}
+
+/* Nút Mở Thiệp */
+.cover-card > .btn {
+  margin-top: 0.75rem !important;
+  padding: 0.75rem 2rem !important;
+}
+
+/* ==========================================
+   FIX CHUẨN BỐ CỤC LỜI CHÚC (2 CỘT CÂN ĐỐI)
+   ========================================== */
+
+/* 1. Khôi phục bố cục lưới chuẩn: Cột trái (Form) vừa vặn, Cột phải (Slider) rộng rãi */
+#wishes .wish-layout {
+  display: grid !important;
+  grid-template-columns: minmax(340px, 0.85fr) minmax(0, 1.15fr) !important;
+  gap: 2.5rem !important;
+  align-items: stretch !important;
+  max-width: 1300px !important;
+  margin: 2.5rem auto 0 !important;
+}
+
+/* Ẩn nhãn nhỏ "ĐÃ DUYỆT" / "MẪU" */
+#wishes .wish small,
+#wishes .wish-slider .wish small {
+  display: none !important;
+}
+
+/* 2. Khung chứa slider bên phải */
+#wishes .wish-slider-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+  width: 100% !important;
+  min-height: 0;
+}
+
+/* 3. Vùng chứa danh sách lời chúc (3 hàng dọc trên desktop) */
+#wishes #wishList.wish-slider {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem !important;
+  width: 100% !important;
+  flex: 1 1 auto;
+  min-height: 340px !important;
+}
+
+/* 4. Định dạng mặc định ẩn tất cả thẻ lời chúc */
+#wishes #wishList.wish-slider .wish {
+  display: none !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  padding: 2rem 1.5rem !important;
+  background: #fffdf9 !important;
+  box-shadow: 0 10px 30px rgba(41, 39, 35, 0.06) !important;
+  border-radius: 6px !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Chỉ hiển thị các thẻ được JS kích hoạt class .is-active */
+#wishes #wishList.wish-slider .wish.is-active {
+  display: flex !important;
+}
+
+/* Căn trái nội dung lời chúc */
+#wishes #wishList.wish-slider .wish blockquote {
+  margin: auto 0 !important;
+  font-size: clamp(1.1rem, 1.35vw, 1.3rem) !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif !important;
+  color: #292723 !important;
+  word-break: break-word !important;
+}
+
+/* Tên người chúc ở góc dưới bên phải */
+#wishes #wishList.wish-slider .wish p {
+  align-self: stretch !important;
+  width: 100% !important;
+  margin: 1rem 0 0 !important;
+  text-align: right !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: #397f7d !important;
+}
+
+/* 5. Bộ nút bấm chuyển trang <> */
+.wish-slider-controls {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 1.25rem !important;
+}
+
+.wish-slider-controls button {
+  width: 44px !important;
+  height: 44px !important;
+  border: 1px solid rgba(41, 39, 35, 0.25) !important;
+  border-radius: 50% !important;
+  background: #fffdf9 !important;
+  cursor: pointer !important;
+  font-size: 1.2rem !important;
+  display: grid !important;
+  place-items: center !important;
+  transition: all 0.25s ease !important;
+}
+
+.wish-slider-controls button:hover {
+  background: #397f7d !important;
+  color: #ffffff !important;
+  border-color: #397f7d !important;
+}
+
+.wish-slider-counter {
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  color: #292723 !important;
+}
+
+/* Responsive cho màn hình điện thoại */
+@media (max-width: 768px) {
+  #wishes .wish-layout {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+  }
+  #wishes #wishList.wish-slider {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto;
+    grid-auto-rows: auto;
+    flex: none;
+    min-height: 290px !important;
+  }
+  #wishes #wishList.wish-slider .wish { min-height: 290px !important; height: auto !important; }
+  #wishes .wish-slider-controls button { width: 44px !important; height: 44px !important; }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #wishes #wishList.wish-slider {
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+  }
+}
